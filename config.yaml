@@ -1,0 +1,176 @@
+product:
+  name: "Notion"
+  slug: "notion"
+
+global:
+  output_dir: "output"
+  default_max_items: 200
+  default_rate_limit_delay: 1.0
+  default_freshness_hours: 24
+  playwright_headless: true
+
+sources:
+  # ── Tier 1: Official APIs / libraries ─────────────────────────────────────
+  play_store:
+    enabled: true
+    app_id: "notion.id"
+    lang: "en"
+    country: "us"
+    max_items: 500
+    freshness_hours: 24
+
+  app_store:
+    enabled: true
+    app_id: "1232780281"        # Notion's App Store numeric ID
+    app_name: "notion"
+    country: "us"
+    max_items: 200
+    freshness_hours: 24
+
+  reddit:
+    enabled: true
+    subreddits:
+      - "Notion"
+      - "productivity"
+      - "selfhosted"
+    search_query: "Notion app"
+    time_filter: "month"        # hour | day | week | month | year | all
+    max_items: 200
+    freshness_hours: 12
+
+  hacker_news:
+    enabled: true
+    search_query: "Notion"
+    tags: "story"               # story | comment | ask_hn | show_hn
+    max_items: 100
+    freshness_hours: 24
+
+  stack_overflow:
+    enabled: true
+    search_query: "Notion"
+    tags: []                    # e.g. ["notion", "productivity"]
+    max_items: 100
+    freshness_hours: 48
+
+  youtube:
+    enabled: true
+    search_query: "Notion review"
+    max_videos: 10
+    max_comments_per_video: 50
+    order: "relevance"          # relevance | date | viewCount | rating
+    freshness_hours: 48
+
+  github_issues:
+    enabled: true
+    repo: "makenotion/notion-sdk-js"
+    state: "open"               # open | closed | all
+    max_items: 100
+    freshness_hours: 24
+
+  steam:
+    enabled: false              # Set true if product is a Steam game
+    app_id: "0"
+    language: "english"
+    review_type: "all"          # all | positive | negative
+    max_items: 200
+    freshness_hours: 24
+
+  # ── Tier 2: HTML scrapers (requires --tos-aware flag) ─────────────────────
+  trustpilot:
+    enabled: true
+    slug: "notion.so"           # as it appears in trustpilot.com/review/{slug}
+    max_items: 200
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  g2:
+    enabled: true
+    slug: "notion"              # as in g2.com/products/{slug}/reviews
+    max_items: 200
+    rate_limit_delay: 4.0
+    freshness_hours: 48
+
+  capterra:
+    enabled: true
+    slug: "notion/233160"       # as in capterra.com/p/233160/notion/
+    max_items: 200
+    rate_limit_delay: 4.0
+    freshness_hours: 48
+
+  getapp:
+    enabled: true
+    slug: "notion/233160"
+    max_items: 100
+    rate_limit_delay: 4.0
+    freshness_hours: 48
+
+  sitejabber:
+    enabled: true
+    slug: "notion.so"
+    max_items: 100
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  consumer_affairs:
+    enabled: false
+    slug: "notion"
+    max_items: 100
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  amazon:
+    enabled: false              # High bot risk — use at your own risk
+    asin: "B09QH5F2V4"
+    max_items: 100
+    rate_limit_delay: 7.0       # 5–8s randomized
+    freshness_hours: 72
+
+  product_hunt:
+    enabled: true
+    slug: "notion"
+    max_items: 100
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  quora:
+    enabled: false
+    search_query: "Notion app review"
+    max_items: 50
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  mouthshut:
+    enabled: false
+    url: "https://www.mouthshut.com/product-reviews/Notion-reviews-925896376"
+    max_items: 100
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  flipkart:
+    enabled: false
+    search_query: "Notion app"
+    max_items: 100
+    rate_limit_delay: 3.0
+    freshness_hours: 48
+
+  # ── Tier 3: Playwright (requires --tos-aware flag) ─────────────────────────
+  gartner:
+    enabled: false
+    url: "https://www.gartner.com/reviews/market/content-collaboration-platforms/vendor/notion-labs/product/notion"
+    max_items: 50
+    rate_limit_delay: 3.0
+    freshness_hours: 72
+
+  microsoft_store:
+    enabled: false
+    app_id: "9P2LHK0KJK1H"     # Notion's Microsoft Store ID
+    max_items: 100
+    rate_limit_delay: 2.0
+    freshness_hours: 48
+
+  # ── Optional: Paid API ─────────────────────────────────────────────────────
+  twitter:
+    enabled: false
+    search_query: "Notion app -is:retweet lang:en"
+    max_items: 100
+    freshness_hours: 6
